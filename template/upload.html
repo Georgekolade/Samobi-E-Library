@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Samobi E-Library | Upload{% endblock title %}
+
+{% block content %}
+
+<!-- Page Content -->
+<!-- Banner Starts Here -->
+<div class="main-banner header-text">
+  <div class="container-fluid">
+    <div class="owl-banner owl-carousel">
+    </div>
+  </div>
+</div>
+<!-- Banner Ends Here -->
+
+<section class="section">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-8 mt-5">
+				<div class="card">
+					<div class="card-header text-white" style="background-color: #f48840;">
+						<h1 class="fw-bold">Upload</h1>
+					</div>
+					<div class="card-body">
+						<form action="" method="POST" enctype="multipart/form-data" autocomplete="on" spellcheck="true">
+							{% csrf_token %}
+							<div class="mb-3">
+								<label class="form-label">Name</label>
+								<input type="text" class="form-control" required name="name"></input>
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Picture</label>
+								<input type="file" class="form-control" name="image"></input>
+							</div>
+							<div class="mb-3">
+								<label class="form-label">PDF</label>
+								<div class="input-group">
+									<input type="file" class="form-control" required name="file"></input>
+									<div class="input-group-append">
+										<button type="submit" class="input-group-text text-white" style="background-color: #f48840;">Upload</button>
+                  </div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

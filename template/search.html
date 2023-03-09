@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Samobi E-Library | Searched {% endblock title %}
+
+{% block content %}
+
+<!-- Page Content -->
+
+<!-- Banner Starts Here -->
+<div class="main-banner header-text">
+  <div class="container-fluid">
+    <div class="owl-banner owl-carousel">
+    </div>
+  </div>
+</div>
+<!-- Banner Ends Here -->
+
+<div class="col-lg-8 mx-auto">
+  <div class="sidebar">
+    <div class="row">
+      <div class="col-lg-12 col-sm-12 col-md-8 mx-auto">
+        <div class="sidebar-item">
+          <form name="gs" method="POST" action="{% url 'search' %}">
+            {% csrf_token %}
+            <div class="input-group my-2">
+              <input type="search" class="form-control border border-warning rounded" placeholder="Search" name="searched" autocomplete="on"></input>
+              <div class="input-group-append">
+                <button type="submit" class="input-group-text text-white" style="background-color: #f48840;">Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if books %}
+  <div class="container text-center">
+      <p class="h5 text-dark mt-2" style="text-transform: uppercase;">You searched for : <strong style="color: #f48840;">{{searched}}</strong></p>
+      <p class="h6 text-dark">Found {{ books| length }} pdf{{books | pluralize }}.</p>
+    <div class="row">
+      {% for book in books %}
+      <div class="container d-flex">
+          <div class="col-lg-3 col-md-4 col-sm-12 d-flex my-3">
+            <div class="card">
+              <img src="{{ book.image.url }}" alt="{{ book.name }}" class="img-fluid card-img-top">
+              <div class="card-body">
+                <h4 class="class-title text-capitalize">{{ book.name }}</h4>
+                 <a href="{{ book.file.url }}" class="btn mt-3 text-white" style="background-color: #f48840;" download>Download</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %} <p>No books matched your search criteria.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

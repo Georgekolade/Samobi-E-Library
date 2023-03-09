@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Samobi E-Library | News{% endblock title %}
+
+{% block content %}
+<!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="heading-page header-text">
+      <section class="page-heading">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="text-content">
+                <h4>Get Updated with happenings round the Globe</h4>
+                <h2>Latest News</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Banner Ends Here -->
+
+    <section class="call-to-action">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="main-content">
+              <div class="row">
+                <div class="col-lg-8">
+                  <span>Download PDFs</span>
+                  <h4>FST Courses Pdf for all levels</h4>
+                </div>
+                <div class="col-lg-4">
+                  <div class="main-button">
+                    <a href="/download" target="_parent">Download Now!</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="blog-posts grid-system">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10">
+            <div class="all-blog-posts">
+              <div class="row">
+                {% for i in articles %}
+                <div class="col-lg-6">
+                  <div class="blog-post">
+                    <div class="blog-thumb">
+                      <img src="{{i.urlToImage}}" width="100%" height="auto">
+                    </div>
+                    <div class="down-content">
+                      <span>{{i.title}}</span>
+                      <a href="{{i.url}}" target="_blank"><h4>{{i.description}}</h4></a>
+                      <ul class="post-info">
+                        <li><a href="#">{{i.source.name}}</a></li>
+                        <li><a href="#">{{i.publishedAt}}</a></li>
+                        <!-- <li><a href="#">12 Comments</a></li> -->
+                      </ul>
+                      <!-- <p></p> -->
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+               </div>
+              </div>
+            </div>
+            <div class="col-lg-2">
+            <div class="sidebar">
+              <div class="row">                
+                <div class="col-lg-12">
+                  <div class="sidebar-item tags">
+                    <div class="sidebar-heading">
+                      <h2>Categories</h2>
+                    </div>
+                    <div class="content">
+                      <ul>
+                        <li><a href="{% url 'news' %}?category=business">Business</a></li>
+                        <li><a href="{% url 'news' %}?category=entertainment">Entertainment</a></li>
+                        <li><a href="{% url 'news' %}?category=health">Health</a></li>
+                        <li><a href="{% url 'news' %}?category=science">Science</a></li>
+                        <li><a href="{% url 'news' %}?category=sports">Sports</a></li>
+                        <li><a href="{% url 'news' %}?category=technology">Technology</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}
